@@ -16,13 +16,21 @@ export default class Game {
 		this.gameElement = document.getElementById(element);
 
 		this.board = new Board(width, height);
-		this.leftPaddle = new Paddle(height, P.paddleWidth, P.paddleHeight, P.padding, this.paddlePos, KEYS.a, KEYS.z);
-		this.rightPaddle = new Paddle(height, P.paddleWidth, P.paddleHeight, this.rightPaddleXDist, this.paddlePos, KEYS.up, KEYS.down);
+		this.player1 = new Paddle(height, P.paddleWidth, P.paddleHeight, P.padding, this.paddlePos, KEYS.a, KEYS.z);
+		this.player2 = new Paddle(height, P.paddleWidth, P.paddleHeight, this.rightPaddleXDist, this.paddlePos, KEYS.up, KEYS.down);
 		this.ball = new Ball(ballRaidus, width, height);
+
+		document.addEventListener('keydown', event => {
+      if(event.key === KEYS.spaceBar){
+				this.pause = !this.pause;
+			}
+    });
 	}
 
 	render() {
-		
+		if (this.pause){
+			return;
+		}
 		this.gameElement.innerHTML = '';
 
 		let svg = document.createElementNS(SVG_NS, 'svg');
@@ -31,10 +39,9 @@ export default class Game {
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 		
 		this.board.render(svg);
-		this.leftPaddle.render(svg);
-		this.rightPaddle.render(svg);
-		this.ball.render(svg);
+		this.player1.render(svg);
+		this.player2.render(svg);
+		this.ball.render(svg, this.player1, this.player2);
 		this.gameElement.appendChild(svg);
 	}
-
 }

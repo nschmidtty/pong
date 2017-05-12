@@ -1,4 +1,7 @@
-import {SVG_NS, PADDLE} from '../settings.js'
+import {
+  SVG_NS,
+  PADDLE
+} from '../settings.js'
 
 export default class Paddle {
   constructor(boardHeight, width, height, x, y, up, down) {
@@ -22,12 +25,20 @@ export default class Paddle {
     });
   }
 
-  up(){
-    this.y = Math.max(this.y-this.speed, PADDLE.MIN_PADDLE);
+  up() {
+    this.y = Math.max(this.y - this.speed, PADDLE.MIN_PADDLE);
   }
 
-  down(){
-    this.y = Math.min(this.y+this.speed, PADDLE.MAX_PADDLE);
+  down() {
+    this.y = Math.min(this.y + this.speed, PADDLE.MAX_PADDLE);
+  }
+
+  coordinates(x, y, width, height) {
+    let leftX = x;
+    let rightX = x + width;
+    let topY = y;
+    let bottomY = y + height;
+    return [leftX, rightX, topY, bottomY];
   }
 
   render(svg) {
