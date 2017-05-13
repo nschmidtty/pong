@@ -28,11 +28,13 @@ export default class Game {
 		this.ball = new Ball(BALL_RADIUS, width, height);
 		this.score1 = new Score(width / 2 - S.SCORE1_X_DIST, S.SCORE_Y_DIST, S.SCORE_SIZE);
 		this.score2 = new Score(width / 2 + S.SCORE2_X_DIST, S.SCORE_Y_DIST, S.SCORE_SIZE);
+		this.gameOver = new Score(width / 5.5, 125, 40);
 
 		this.pauseListener();
 	}
 
 	render() {
+
 		if (this.pause) {
 			return;
 		}
@@ -44,14 +46,19 @@ export default class Game {
 		svg.setAttributeNS(null, 'height', this.height);
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 
-
+		this.gameElement.appendChild(svg);
 		this.board.render(svg);
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
+
+		if (this.ball.endGame) {
+			this.endScreen(svg);
+			return;
+		}
+
 		this.player1.render(svg);
 		this.player2.render(svg);
 		this.ball.render(svg, this.player1, this.player2);
-		this.gameElement.appendChild(svg);
 	}
 
 	pauseListener() {
@@ -60,5 +67,13 @@ export default class Game {
 				this.pause = !this.pause;
 			}
 		});
+	}
+
+	endScreen(svg) {
+		if (this.player1.score === 2) {
+			this.gameOver.render(svg, 'Player 1 Wins!');
+		} else {
+			this.gameOver.render(svg, 'Player 2 Wins!');
+		}
 	}
 }

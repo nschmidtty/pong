@@ -4,6 +4,7 @@ import {
 
 export default class Ball {
   constructor(radius, boardWidth, boardHeight) {
+    this.endGame = false;
     this.radius = radius;
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
@@ -69,10 +70,10 @@ export default class Ball {
     const leftGoal = this.x - this.radius <= 0;
     if (rightGoal) {
       this.goal(player1);
-      this.direction = -1;
+      this.direction = 1;
     } else if (leftGoal) {
       this.goal(player2);
-      this.direction = 1;
+      this.direction = -1;
     }
   }
 
@@ -80,12 +81,8 @@ export default class Ball {
     player.score++;
     this.reset();
     if(player.score === 2){
-      this.winner();
+      this.endGame = true;
     }
-  }
-
-  winner(){
-    
   }
 
   reset() {
