@@ -10,11 +10,14 @@ import Paddle from './Paddle.js'
 import Ball from './Ball.js'
 import Score from './Score.js'
 
+
 export default class Game {
+
 
 	constructor(element, width, height) {
 		const P = PADDLE;
 		const S = SCORE;
+		this.checkDifficulty();
 		this.width = width;
 		this.height = height;
 		this.rightPaddleXDist = width - PADDLE.padding - PADDLE.paddleWidth;
@@ -68,6 +71,18 @@ export default class Game {
 			}
 		});
 	}
+
+	checkDifficulty() {
+		const levels = ['Easy', 'Normal', 'Hard', 'WAT'];
+		let difficulty = prompt('Pick a difficulty: Easy/Normal/Hard/WAT');
+		for (let x = 0; x < levels.length; x++) {
+			if (levels[x] === difficulty) {
+				return difficulty;
+			}
+		}
+		this.checkDifficulty();
+	}
+
 
 	endScreen(svg) {
 		if (this.player1.score === 2) {

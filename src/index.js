@@ -7,3 +7,5 @@ const game = new Game('game', 512, 256);
     game.render();
     requestAnimationFrame(gameLoop);
 })();
+
+
