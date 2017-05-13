@@ -33,7 +33,10 @@ export default class Game {
 	}
 
 	render() {
-		this.pauseChecker();
+		if (this.pause) {
+			return;
+		}
+
 		this.gameElement.innerHTML = '';
 
 		let svg = document.createElementNS(SVG_NS, 'svg');
@@ -57,11 +60,5 @@ export default class Game {
 				this.pause = !this.pause;
 			}
 		});
-	}
-
-	pauseChecker() {
-		if (this.pause) {
-			return;
-		}
 	}
 }

@@ -5,7 +5,7 @@ import {
 
 export default class Paddle {
   constructor(boardHeight, width, height, x, y, up, down) {
-    this.boardHeight = boardHeight;
+    this.maxHeight = boardHeight - height;
     this.width = width;
     this.height = height;
     this.x = x;
@@ -26,11 +26,11 @@ export default class Paddle {
   }
 
   up() {
-    this.y = Math.max(this.y - this.speed, PADDLE.MIN_PADDLE);
+    this.y = Math.max(this.y - this.speed, PADDLE.MIN_PADDLE_HEIGHT);
   }
 
   down() {
-    this.y = Math.min(this.y + this.speed, PADDLE.MAX_PADDLE);
+    this.y = Math.min(this.y + this.speed, this.maxHeight);
   }
 
   coordinates(x, y, width, height) {

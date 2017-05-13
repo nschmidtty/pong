@@ -9,8 +9,7 @@ export const SCORE = {
 }
 
 export const PADDLE = {
-  MIN_PADDLE: 0,
-  MAX_PADDLE: 200,
+  MIN_PADDLE_HEIGHT: 0,
   paddleWidth: 8,
   paddleHeight: 56,
   padding: 10,
