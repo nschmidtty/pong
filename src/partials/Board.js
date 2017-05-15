@@ -1,4 +1,6 @@
-import {SVG_NS} from '../settings.js'
+import {
+  SVG_NS
+} from '../settings.js'
 
 export default class Board {
   constructor(width, height) {
@@ -14,8 +16,8 @@ export default class Board {
     svg.appendChild(background);
 
     const middle = document.createElementNS(SVG_NS, 'line');
-    middle.setAttributeNS(null, 'x1', this.width/2);
-    middle.setAttributeNS(null, 'x2', this.width/2);
+    middle.setAttributeNS(null, 'x1', this.width / 2);
+    middle.setAttributeNS(null, 'x2', this.width / 2);
     middle.setAttributeNS(null, 'y1', 0);
     middle.setAttributeNS(null, 'y2', this.height);
     middle.setAttributeNS(null, 'stroke', 'green');
@@ -24,5 +26,4 @@ export default class Board {
 
     svg.appendChild(middle);
   }
-   
 }

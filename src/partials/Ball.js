@@ -3,12 +3,13 @@ import {
 } from '../settings.js'
 
 export default class Ball {
-  constructor(radius, boardWidth, boardHeight) {
+  constructor(radius, boardWidth, boardHeight, maxScore) {
     this.endGame = false;
     this.radius = radius;
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.maxScore = maxScore;
     this.reset();
     this.ping = new Audio('../../public/sounds/pong-01.wav');
   }
@@ -80,7 +81,7 @@ export default class Ball {
   goal(player) {
     player.score++;
     this.reset();
-    if(player.score === 2){
+    if (player.score == this.maxScore) {
       this.endGame = true;
     }
   }

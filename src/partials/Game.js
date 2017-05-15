@@ -10,34 +10,30 @@ import Paddle from './Paddle.js'
 import Ball from './Ball.js'
 import Score from './Score.js'
 
-
 export default class Game {
-
-
 	constructor(element, width, height) {
-		const P = PADDLE;
 		const S = SCORE;
-		this.checkDifficulty();
+		const P = PADDLE;
+		const maxScore = prompt('Enter a max score.')
+		//this.checkDifficulty();
 		this.width = width;
 		this.height = height;
-		this.rightPaddleXDist = width - PADDLE.padding - PADDLE.paddleWidth;
-		this.paddlePos = (height - PADDLE.paddleHeight) / 2;
 
 		this.gameElement = document.getElementById(element);
-
 		this.board = new Board(width, height);
-		this.player1 = new Paddle(height, P.paddleWidth, P.paddleHeight, P.padding, this.paddlePos, KEYS.a, KEYS.z);
-		this.player2 = new Paddle(height, P.paddleWidth, P.paddleHeight, this.rightPaddleXDist, this.paddlePos, KEYS.up, KEYS.down);
-		this.ball = new Ball(BALL_RADIUS, width, height);
 		this.score1 = new Score(width / 2 - S.SCORE1_X_DIST, S.SCORE_Y_DIST, S.SCORE_SIZE);
 		this.score2 = new Score(width / 2 + S.SCORE2_X_DIST, S.SCORE_Y_DIST, S.SCORE_SIZE);
+		this.rightPaddleXDist = width - PADDLE.padding - PADDLE.paddleWidth;
+		this.paddlePos = (height - PADDLE.paddleHeight) / 2;
+		this.player1 = new Paddle(height, P.paddleWidth, P.paddleHeight, P.padding, this.paddlePos, KEYS.a, KEYS.z);
+		this.player2 = new Paddle(height, P.paddleWidth, P.paddleHeight, this.rightPaddleXDist, this.paddlePos, KEYS.up, KEYS.down);
+		this.ball = new Ball(BALL_RADIUS, width, height, maxScore);
 		this.gameOver = new Score(width / 5.5, 125, 40);
 
 		this.pauseListener();
 	}
 
 	render() {
-
 		if (this.pause) {
 			return;
 		}
@@ -80,9 +76,7 @@ export default class Game {
 				return difficulty;
 			}
 		}
-		this.checkDifficulty();
 	}
-
 
 	endScreen(svg) {
 		if (this.player1.score === 2) {

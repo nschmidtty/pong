@@ -25,3 +25,21 @@ A basic pong game using SVGs.
 **Player 2:**
 * ▲ : up
 * ▼: down
+
+# Pong Project
+
+## Goals
+* Build out and customize a game of pong in browser using JavaScript
+
+## Things I Used
+* 
+* Google Chrome (https://www.google.com/chrome/)
+* Google Chrome Developer Tools
+* JavaScript
+* Visual Studio Code (https://code.visualstudio.com/)
+* Flickit
+* WebPack
+
+## Things I Learned
+* JavaScript is hard
+* Prompts always return String values
