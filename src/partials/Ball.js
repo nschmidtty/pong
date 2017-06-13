@@ -81,7 +81,7 @@ export default class Ball {
   goal(player) {
     player.score++;
     this.reset();
-    if (player.score == this.maxScore) {
+    if (player.score === parseInt(this.maxScore)) {
       this.endGame = true;
     }
   }
@@ -92,10 +92,10 @@ export default class Ball {
     this.y = this.boardHeight / 2;
 
     while (this.vy === 0) {
-      this.vy = Math.floor(Math.random() * 10 - 5);
+      this.vy = Math.floor(Math.random() * 10 / 2 - 3);
     }
 
-    this.vx = this.direction * (6 - Math.abs(this.vy));
+    this.vx = this.direction * (5 - Math.abs(this.vy));
   }
 
   movement() {
